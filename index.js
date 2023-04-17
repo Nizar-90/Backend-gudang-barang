@@ -35,6 +35,16 @@ app.get("/api/data-barang", (req, res) => {
   );
 });
 
+app.get("/api/data-barang/:id_barang", (req, res) => {
+  connection.query(
+    `SELECT * FROM data_barang WHERE id_barang = '${req.params.id_barang}'`,
+    function (error, results, fields) {
+      console.log(error)
+      res.send(results);
+    }
+  )
+})
+
 app.post("/api/data-barang", (req, res) => {
   let dataInputan = {
     id_barang: req.body.id_barang,
